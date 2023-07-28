@@ -1,0 +1,39 @@
+.heading{
+    color: #006653;
+  }
+  
+  .setting .left .bottom ul .active {
+    background-color: #16a34a;
+  }
+  
+  .setting .left .bottom ul .active .icon {
+    color: #fff;
+
+  }
+  
+  .setting .left .bottom ul .active span {
+    color: #fff;
+  }
+  
+  /* .setting .left .bottom ul li {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    gap: 0.3rem;
+    margin: 0.2rem;
+    cursor: pointer;
+    border-radius: 1rem;
+  } */
+  
+  .setting .left .bottom ul li:hover {
+    background-color: #16a34a;
+    color: #fff;
+  }
+  
+  .setting .left .bottom ul li:hover .icon {
+    color: #fff;
+  }
+  
+  .setting .left .bottom ul li:hover span {
+    color: #fff;
+  }

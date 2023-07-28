@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Logo from '../assets/logo.png';
-import useAuth from '../hooks/useAuth';
-import OTPInput from 'react-otp-input';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "../assets/logo.png";
+import useAuth from "../hooks/useAuth";
+import OTPInput from "react-otp-input";
 
 const TwoFactorAuth = () => {
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
-  const [qrcodeString, setQrcodeString] = useState('');
-  const [error, setError] = useState('');
+  const [qrcodeString, setQrcodeString] = useState("");
+  const [error, setError] = useState("");
 
   const { getQRCode, verifyOTP } = useAuth();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setQrCode(params.get('user'));
+    setQrCode(params.get("user"));
 
     // eslint-disable-next-line
   }, []);
@@ -33,10 +33,10 @@ const TwoFactorAuth = () => {
 
   const handleVerify = async () => {
     try {
-      const res = await verifyOTP(localStorage.getItem('email'), otp);
-      if (res.status == 200) navigate('/');
+      const res = await verifyOTP(localStorage.getItem("email"), otp);
+      if (res.status == 200) navigate("/login");
     } catch (err) {
-      if (err.response.status == 401) setError('Invalid OTP');
+      if (err.response.status == 401) setError("Invalid OTP");
     }
   };
 
@@ -64,7 +64,7 @@ const TwoFactorAuth = () => {
               value={otp}
               onChange={setOtp}
               numInputs={6}
-              inputStyle={{ width: 50, marginRight: '10px' }}
+              inputStyle={{ width: 50, marginRight: "10px" }}
               renderInput={(props) => <input {...props} />}
             />
 

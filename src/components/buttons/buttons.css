@@ -1,0 +1,17 @@
+.setting .right  .button {
+    width: 73%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .setting .right .button button {
+    padding: 0.6rem;
+    background-color: #16a34a;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+  }
+  

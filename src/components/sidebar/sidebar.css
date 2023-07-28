@@ -1,0 +1,64 @@
+.sidebar{
+    flex: 1;
+    min-height: 100vh;
+    border-right: 1px solid #E1E3E5;
+}
+
+.logo{
+   height: 3rem;
+   font-size: 2rem;
+   font-weight: 900;
+   border-bottom: 1px solid #e1e3e5; 
+}
+
+.items{
+    padding: 0.6rem;
+    margin-top: 1.2rem;
+}
+
+ul{
+    list-style: none;
+}
+
+ul li{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    margin: 1.6rem 0;
+    cursor: pointer;
+}
+
+ul li .icon{
+    font-size: 1.4rem;
+    color: #006653;
+}
+
+ul li span{
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 3%;
+    color: #006653
+}
+
+
+ul li.active .icon{
+    color: #16A34A;
+}
+
+ul li.active span{
+    color: #16A34A;
+}
+
+ul li:hover .icon{
+    color: #16A34A;
+}
+
+ul li:hover span{
+    color: #16A34A;
+}
+
+.logout{
+    color: #ff0000;
+}

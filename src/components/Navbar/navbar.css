@@ -1,0 +1,39 @@
+.top-navbar{
+    height: 3rem;
+    border-bottom: 1px solid #e1e3e5;
+    display: flex;
+    align-items: center;
+}
+
+.main-wrapper{
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heading-text{
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+    color: #006653;
+}
+
+.userInfo{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.image{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.role{
+    display: flex;
+    align-items: center;
+}

@@ -125,3 +125,19 @@
   color: #006653;
   font-size: .8rem;
 }
+
+/* Pages styling */
+.pageContainer{
+  display: flex;
+}
+
+.contentContainer{
+  flex: 6;
+}
+
+.mainContent{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
