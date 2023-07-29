@@ -1,0 +1,84 @@
+.productDetailsHeading{
+    font-size: 20px;
+    color: #16a34a;
+    font-weight: 500;;
+}
+
+.ag-theme-alpine, .ag-theme-alpine-dark{
+    --ag-row-hover-color: none;
+    --ag-range-selection-background-color: #fff;
+    --ag-range-selection-background-color-2: #fff;
+    --ag-range-selection-background-color-3: #fff;
+    --ag-range-selection-background-color-4: #fff;
+    --ag-header-background-color: #fff;
+    --ag-odd-row-background-color: #fff;
+    --ag-border-color: none;
+}
+
+.ag-row{
+    border-top: var(--ag-row-border-style) var(--ag-row-border-color) var(--ag-row-border-width);
+    border-bottom: var(--ag-row-border-style) var(--ag-row-border-color) var(--ag-row-border-width);
+}
+
+.paginationButtons{
+    gap: 10px;
+}
+
+.pg-btn{
+    background-color: #10A760;
+}
+
+.ad-btn{
+    background-color: #10A760;
+}
+
+.inStock {
+    color: #10A760;
+  }
+  
+.outOfStock {
+    color: #DA3E33;
+}
+  
+.lowStock {
+    color: #E19133;
+}
+
+.dialogContent{
+    gap: 10px;
+}
+
+.addItemField{
+    align-items: center;
+}
+
+.dialogTitle{
+    color: #10A760;
+}
+
+input{
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+}
+
+.inputField{
+    padding: 8px;
+    border: 1px solid #d0d5dd;
+    border-radius: 5px;
+    width: 60%;
+}
+
+.img-upload{
+    margin-bottom: 20px;
+}
+
+.dialogAction{
+    margin-top: 20px;
+}
+
+.addItemField p{
+    padding-top: 12px;
+    font-size: 14px;
+}

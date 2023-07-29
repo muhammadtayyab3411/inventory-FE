@@ -136,8 +136,10 @@
 }
 
 .mainContent{
-  padding: 1rem;
+  padding: 1rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1rem;
+  background-color: #F0F1F3;
+  min-height: calc(100vh - 3rem);
 }

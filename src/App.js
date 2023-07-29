@@ -11,6 +11,9 @@ import PrivateRoute from "./components/HOCs/PrivateRoute";
 import Settings from "./pages/Settings";
 import PersonalInfo from "./pages/PersonalInfo";
 import ProfileForm from "./pages/ProfileForm";
+import Inventory from "./pages/Inventory";
+import ProductInfo from "./pages/ProductInfo";
+import InventoryReport from "./pages/InventoryReport";
 
 function App() {
   return (
@@ -24,7 +27,10 @@ function App() {
             exact
             element={<PersonalInfo />}
           />
+          <Route path="/Inventory" exact element={<Inventory />} />
           <Route path="/Profile-form" exact element={<ProfileForm />} />
+          <Route path="/Product-info" exact element={<ProductInfo />} />
+          <Route path="/Report" exact element={<InventoryReport />} />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

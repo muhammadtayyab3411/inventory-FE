@@ -1,0 +1,59 @@
+.inventoryDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.top{
+    gap: 20px;
+}
+
+.topBSC, .topOverview, .profitRevenue, .bestSellingProduct{
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+
+.topOverviewHr{
+    width: 100%;
+    margin-top: 1px;
+}
+
+.totalStats, .netStats{
+    gap: 20px;
+}
+
+.topOverviewHeading, .topBscHeading, .topBspHeading{
+    font-size: 20px;
+    font-weight: 500;
+    color: #16a34a;
+}
+
+.amount{
+    font-size: 16px;
+    font-weight: 500;
+    color: #5d6679;
+}
+
+.desc{
+    font-size: 14px;
+    color: #667085;
+}
+
+.totalProfitText{
+    color: #555555;
+}
+
+.totalRevenueText{
+    color: #DBA362;
+}
+
+.totalSalesText{
+    color: #845EBC;
+}
+
+.chartHeading{
+    font-weight: 500;
+    font-size: 20px;
+    color: #16a34a;
+}

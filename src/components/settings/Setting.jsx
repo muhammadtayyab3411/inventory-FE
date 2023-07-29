@@ -5,10 +5,10 @@ import InnerSettings from "../innerSettings/InnerSettings";
 
 const Setting = () => {
   return (
-    <div className="setting container border border-dark rounded-lg shadow p-4 mt-2 mb-0 d-flex">
+    <div className="setting container rounded-lg  p-4 mt-2 mb-0 d-flex">
       <InnerSettings />
       <div className="right flex-grow-3 p-4">
-        <p className="heading fw-bold fs-4">Account Settings</p>
+        <p className="innerHeading fw-bold fs-4">Account Settings</p>
         <hr className="my-2" />
         <div className="my-3">
           <p className="fw-bold my-1">Profile</p>

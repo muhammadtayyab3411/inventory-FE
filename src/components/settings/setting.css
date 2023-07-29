@@ -2,67 +2,13 @@
     max-width: 100%;
     min-height: calc(100vh - 12rem);
     border-radius: 8px;
+    background-color: #fff;
   }
-  
-  /* .setting .left {
-    flex: 1;
-    padding: 1rem;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-    background-color: #f6f6f6;
-  } */
-  
-  /* .setting .left .top {
-    margin: 2rem 0;
-    padding-left: 1.2rem;
-  } */
-  
-  /* .setting .left .top .title {
-    font-size: 1.4rem;
-    font-weight: 700;
-  } */
-  
-  /* .setting .left .bottom ul {
-    list-style: none;
-  } */
 
-  
-  /* .setting .left .bottom ul li:hover .count {
-    background-color: transparent;
-  } */
-  
-  /* .setting .left .bottom ul li .icon {
-    font-size: 1.4rem;
-    color: #222;
-  } */
-  
-  /* .setting .left .bottom ul li span {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #888;
-  } */
-  
-  /* .setting .right {
-    flex: 3;
-    padding: 2rem;
-  } */
-  
-  /* .setting .right .heading {
-    font-size: 1.4rem;
-    font-weight: 700;
-  } */
-  
-  /* .setting .right hr {
-    margin: 1rem 0;
-  }
-   */
-  /* .setting .right .form p {
-    font-weight: 700;
+  .innerHeading{
+    color: #16a34a;
   }
   
-  .setting .right .form span {
-    font-size: 0.9rem;
-    font-weight: 500;
-  } */
 
   hr{
     width: 73%;

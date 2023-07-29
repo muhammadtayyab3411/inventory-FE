@@ -13,9 +13,9 @@ const PersonalInformation = () => {
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
   return (
-    <div className="personalInfo container border border-dark rounded-lg shadow p-4 mt-2 mb-0 d-flex">
+    <div className="personalInfo container rounded-lg shadow p-4 mt-2 mb-0 d-flex">
       
-      <InnerSettings />
+      <InnerSettings/>
       
       <div className="right flex-grow-3 w-100 p-4">
         

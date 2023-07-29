@@ -2,6 +2,11 @@
     max-width: 100%;
     min-height: calc(100vh - 12rem);
     border-radius: 8px;
+    background-color: #fff;
+}
+
+.heading{
+    color: #16a34a;
 }
 
 .user-img{

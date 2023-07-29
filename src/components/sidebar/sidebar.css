@@ -1,14 +1,18 @@
 .sidebar{
-    flex: 1;
+    flex: 1 !important;
     min-height: 100vh;
     border-right: 1px solid #E1E3E5;
 }
 
 .logo{
+   display: flex;
+   align-items: center;
+   justify-content: center;
    height: 3rem;
-   font-size: 2rem;
-   font-weight: 900;
+   font-size: 1.6rem;
+   font-weight: 700;
    border-bottom: 1px solid #e1e3e5; 
+   color: #16A34A;
 }
 
 .items{
@@ -31,7 +35,7 @@ ul li{
 
 ul li .icon{
     font-size: 1.4rem;
-    color: #006653;
+    color: #5d6679;
 }
 
 ul li span{
@@ -39,7 +43,7 @@ ul li span{
     font-weight: 500;
     line-height: 32px;
     letter-spacing: 3%;
-    color: #006653
+    color: #5d6679;
 }
 
 

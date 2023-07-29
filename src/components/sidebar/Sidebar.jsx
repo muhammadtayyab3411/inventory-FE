@@ -2,6 +2,7 @@ import React from "react";
 import "./sidebar.css";
 import { Link, useLocation } from "react-router-dom";
 import {
+  AssessmentOutlined,
   AssignmentOutlined,
   CalendarMonthOutlined,
   DescriptionOutlined,
@@ -10,6 +11,7 @@ import {
   PeopleAltOutlined,
   PersonOutlined,
   SettingsOutlined,
+  ShoppingCartOutlined,
   TextSnippet,
 } from "@mui/icons-material";
 
@@ -32,7 +34,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <div className="logo"></div>
+      <div className="logo">KoboWeb</div>
       <div className="items">
         <ul>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -47,15 +49,21 @@ const Sidebar = () => {
               <span>Inventory</span>
             </li>
           </Link>
-          <Link to="/Customers" style={{ textDecoration: "none" }}>
-            <li className={isActive("/ Customers") ? "active" : ""}>
+          <Link to="/Report" style={{ textDecoration: "none" }}>
+            <li className={isActive("/Report") ? "active" : ""}>
+              <AssessmentOutlined className="icon" />
+              <span>Report</span>
+            </li>
+          </Link>
+          <Link to="/Suppliers" style={{ textDecoration: "none" }}>
+            <li className={isActive("/Suppliers") ? "active" : ""}>
               <PersonOutlined className="icon" />
-              <span>Customers</span>
+              <span>Suppliers</span>
             </li>
           </Link>
           <Link to="/Shop" style={{ textDecoration: "none" }}>
             <li className={isActive("/Shop") ? "active" : ""}>
-              <CalendarMonthOutlined className="icon" />
+              <ShoppingCartOutlined className="icon" />
               <span>Shop</span>
             </li>
           </Link>
@@ -68,7 +76,7 @@ const Sidebar = () => {
           </Link>
           <Link to="/Settings" style={{ textDecoration: "none" }}>
             <li className={isActive("/Settings") ? "active" : ""}>
-              <CalendarMonthOutlined className="icon" />
+              <SettingsOutlined className="icon" />
               <span>Settings</span>
             </li>
           </Link>

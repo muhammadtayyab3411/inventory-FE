@@ -1,0 +1,21 @@
+.overallInventoryHeading{
+    font-size: 20px;
+    color: #16a34a;
+    font-weight: 500;
+}
+
+.amount{
+    color: #5d6679;
+}
+
+.time{
+    color: #858d9d;
+}
+
+.text-purple{
+    color: #845ebc;
+}
+
+.right{
+    margin-left: 30px;
+}
