@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import './setting.css';
-import Buttons from '../buttons/Buttons';
-import InnerSettings from '../innerSettings/InnerSettings';
-import useUser from '../../hooks/useUser';
+import React, { useEffect, useState } from "react";
+import "./setting.css";
+import Buttons from "../buttons/Buttons";
+import InnerSettings from "../innerSettings/InnerSettings";
+import useUser from "../../hooks/useUser";
 
 const Setting = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [country, setCountry] = useState('');
-  const [language, setLanguage] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [language, setLanguage] = useState("");
 
   const { saveUserDetails, getUserDetails } = useUser();
 
@@ -28,10 +28,10 @@ const Setting = () => {
   };
 
   const updateUserDetails = () => {
-    saveUserDetails(firstName, lastName, phone, country, language, '')
+    saveUserDetails(firstName, lastName, phone, country, language, "")
       .then((res) => {
         console.log(res);
-        alert('User detail updated successfully');
+        alert("User detail updated successfully");
       })
       .catch((err) => console.log(err));
   };

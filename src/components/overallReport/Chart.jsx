@@ -4,17 +4,18 @@ import LineChart from "react-apexcharts";
 const Chart = () => {
   const state = {
     series: [
-        {
+      {
         name: "Revenue",
         data: [
           2000, 2050, 2100, 2150, 2200, 2220, 2180, 2230, 1900, 1920, 1950,
-          2000
+          2000,
         ],
       },
       {
         name: "Profit",
         data: [
-          1350, 1280, 1290, 1310, 1360, 1380, 1400, 1450, 1460, 1470, 1430, 1380
+          1350, 1280, 1290, 1310, 1360, 1380, 1400, 1450, 1460, 1470, 1430,
+          1380,
         ],
       },
     ],
@@ -41,12 +42,23 @@ const Chart = () => {
       },
       xaxis: {
         categories: [
-            "Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+          "Jan",
+          "Feb",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
         ],
       },
       yaxis: {
         labels: {
-          show: true, 
+          show: true,
         },
         tooltip: {
           enabled: true,

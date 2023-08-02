@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+import React, { useEffect, useState } from "react";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
 import {
   Button,
   Dialog,
@@ -9,11 +9,11 @@ import {
   DialogContent,
   TextField,
   DialogActions,
-} from '@material-ui/core';
-import './productDetails.css';
-import ViewDetailsButton from './ViewDetailsButton';
-import useProducts from '../../hooks/useProducts';
-import { useNavigate } from 'react-router-dom';
+} from "@material-ui/core";
+import "./productDetails.css";
+import ViewDetailsButton from "./ViewDetailsButton";
+import useProducts from "../../hooks/useProducts";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   const [products, setProducts] = useState([]);
@@ -35,86 +35,86 @@ const ProductDetails = () => {
   const initialData = [
     {
       id: 1,
-      product: 'Product 1',
-      buyingPrice: '100',
-      quantity: '43 Packets',
-      thresholdvalue: '12 Packets',
-      expiryDate: '2023-12-31',
-      availability: 'In Stock',
-      details: 'View Details',
+      product: "Product 1",
+      buyingPrice: "100",
+      quantity: "43 Packets",
+      thresholdvalue: "12 Packets",
+      expiryDate: "2023-12-31",
+      availability: "In Stock",
+      details: "View Details",
     },
     {
       id: 2,
-      product: 'Product 2',
-      buyingPrice: '150',
-      quantity: '40 Packets',
-      thresholdvalue: '10 Packets',
-      expiryDate: '2023-11-30',
-      availability: 'Out of Stock',
-      details: 'View Details',
+      product: "Product 2",
+      buyingPrice: "150",
+      quantity: "40 Packets",
+      thresholdvalue: "10 Packets",
+      expiryDate: "2023-11-30",
+      availability: "Out of Stock",
+      details: "View Details",
     },
     {
       id: 3,
-      product: 'Product 3',
-      buyingPrice: '180',
-      quantity: '35 Packets',
-      thresholdvalue: '8 Packets',
-      expiryDate: '2023-11-30',
-      availability: 'Low Stock',
-      details: 'View Details',
+      product: "Product 3",
+      buyingPrice: "180",
+      quantity: "35 Packets",
+      thresholdvalue: "8 Packets",
+      expiryDate: "2023-11-30",
+      availability: "Low Stock",
+      details: "View Details",
     },
   ];
 
   const [rowData, setRowData] = useState(initialData);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newProduct, setNewProduct] = useState({
-    product: '',
-    buyingPrice: '',
-    quantity: '',
-    expiryDate: '',
-    availability: '',
-    details: '',
+    product: "",
+    buyingPrice: "",
+    quantity: "",
+    expiryDate: "",
+    availability: "",
+    details: "",
     imageFile: null,
-    id: '',
-    category: '',
-    unit: '',
-    details: '',
-    thresholdvalue: '',
+    id: "",
+    category: "",
+    unit: "",
+    details: "",
+    thresholdvalue: "",
   });
 
   const gridOptions = {
     columnDefs: [
       {
-        headerName: 'Product',
-        field: 'name',
+        headerName: "Product",
+        field: "name",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: 'Buying Price',
-        field: 'buying_price',
+        headerName: "Buying Price ($)",
+        field: "buying_price",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: 'Quantity',
-        field: 'quantity',
+        headerName: "Quantity (Packets)",
+        field: "quantity",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: 'Threshold Value',
-        field: 'threshold_value',
+        headerName: "Threshold Value",
+        field: "threshold_value",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: 'Expiry Date',
-        field: 'expiry_date',
+        headerName: "Expiry Date",
+        field: "expiry_date",
         sortable: true,
         filter: true,
         flex: 1,
@@ -124,8 +124,8 @@ const ProductDetails = () => {
         },
       },
       {
-        headerName: 'Availability',
-        field: 'quantity',
+        headerName: "Availability",
+        field: "quantity",
         sortable: true,
         filter: true,
         flex: 1,
@@ -135,13 +135,13 @@ const ProductDetails = () => {
           lowStock: (params) => params.value < 5 && params.value > 3,
         },
         cellRenderer: (params) => {
-          if (params.value > 5) return 'In Stock';
-          else if (params.value < 3) return 'Out of Stock';
-          else if (params.value < 5 && params.value > 3) return 'Low Stock';
+          if (params.value > 5) return "In Stock";
+          else if (params.value < 3) return "Out of Stock";
+          else if (params.value < 5 && params.value > 3) return "Low Stock";
         },
       },
     ],
-    domLayout: 'autoHeight',
+    domLayout: "autoHeight",
     rowBuffer: 0,
     maxBlocksInCache: 1,
     maxConcurrentDatasourceRequests: 1,
@@ -167,22 +167,22 @@ const ProductDetails = () => {
   const handleSaveProduct = () => {
     const newProductWithDetails = {
       ...newProduct,
-      details: 'View Details',
+      details: "View Details",
     };
 
     setRowData([...rowData, newProductWithDetails]);
     setNewProduct({
-      product: '',
-      buyingPrice: '',
-      quantity: '',
-      expiryDate: '',
-      availability: '',
-      details: '',
+      product: "",
+      buyingPrice: "",
+      quantity: "",
+      expiryDate: "",
+      availability: "",
+      details: "",
       imageFile: null,
-      id: '',
-      category: '',
-      unit: '',
-      thresholdvalue: '',
+      id: "",
+      category: "",
+      unit: "",
+      thresholdvalue: "",
     });
 
     saveNewProduct(
@@ -195,11 +195,11 @@ const ProductDetails = () => {
       newProduct.thresholdvalue
     )
       .then((res) => {
-        alert('Product created successfully');
+        alert("Product created successfully");
         setIsDialogOpen(false);
       })
       .catch((err) => {
-        alert('Error occured when creating the product');
+        alert("Error occured when creating the product");
         console.log(err);
       });
   };
@@ -210,8 +210,8 @@ const ProductDetails = () => {
   };
 
   const buttonStyle = {
-    backgroundColor: '#10A760',
-    color: '#fff',
+    backgroundColor: "#10A760",
+    color: "#fff",
   };
 
   const totalPages = Math.ceil(rowData.length / ITEMS_PER_PAGE);
@@ -245,7 +245,7 @@ const ProductDetails = () => {
 
       <div
         className="ag-theme-alpine"
-        style={{ width: '100%', margin: '10px 0', overflow: 'hidden' }}
+        style={{ width: "100%", margin: "10px 0", overflow: "hidden" }}
       >
         <AgGridReact gridOptions={gridOptions} rowData={products} />
       </div>
@@ -328,12 +328,12 @@ const ProductDetails = () => {
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, buyingPrice: e.target.value })
                 }
-                placeholder="Enter Buying Price"
+                placeholder="Buying Price in $"
               />
             </div>
           </div>
 
-          <div className="addItemField d-flex align-items-center justify-content-between">
+          {/* <div className="addItemField d-flex align-items-center justify-content-between">
             <p>Availability</p>
             <div className="inputField">
               <input
@@ -345,7 +345,7 @@ const ProductDetails = () => {
                 placeholder="Enter Product Availability"
               />
             </div>
-          </div>
+          </div> */}
 
           <div className="addItemField d-flex align-items-center justify-content-between">
             <p>Quantity</p>
@@ -356,7 +356,7 @@ const ProductDetails = () => {
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, quantity: e.target.value })
                 }
-                placeholder="Enter Product Quantity"
+                placeholder="No. of Products in Inventory"
               />
             </div>
           </div>

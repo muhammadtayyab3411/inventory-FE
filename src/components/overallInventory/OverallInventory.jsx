@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './overallInventory.css';
-import useProducts from '../../hooks/useProducts';
+import React, { useEffect, useState } from "react";
+import "./overallInventory.css";
+import useProducts from "../../hooks/useProducts";
 
 const OverallInventory = () => {
   const [topSellingProducts, setTopSellingProducts] = useState(0);
@@ -89,7 +89,7 @@ const OverallInventory = () => {
         </div>
 
         <div className="lowStacks">
-          <p className="heading text-danger">Low Stack</p>
+          <p className="heading text-danger">Low Stock</p>
           <div className="lowStacksStats d-flex justify-content-between">
             <div className="left">
               <p className="amount">{lowStockProducts}</p>

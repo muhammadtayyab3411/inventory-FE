@@ -142,4 +142,22 @@
   gap: 1rem;
   background-color: #F0F1F3;
   min-height: calc(100vh - 3rem);
+  position: relative;
+}
+
+.notificationsContainer{
+  width: 250px;
+  padding: 20px 10px;
+  background-color: #293230;
+  color: #fff;
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notificationsIcon{
+  font-size: 32px;
 }
