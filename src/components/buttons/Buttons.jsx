@@ -1,11 +1,12 @@
-import React from "react";
-import "./buttons.css";
+import React from 'react';
+import './buttons.css';
 
-const Buttons = () => {
+const Buttons = ({ updateUserDetails }) => {
   return (
     <div className="button">
-      <button className="canelButton">Cancel</button>
-      <button className="saveButton">Save</button>
+      <button className="saveButton" onClick={() => updateUserDetails()}>
+        Save
+      </button>
     </div>
   );
 };

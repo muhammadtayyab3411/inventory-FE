@@ -1,19 +1,83 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { Button } from '@material-ui/core';
+import useProducts from '../../hooks/useProducts';
+import { useNavigate } from 'react-router-dom';
 
 const BestSellingProduct = () => {
+  const [bestSellingProducts, setBestSellingProducts] = useState([]);
+
+  const navigate = useNavigate();
+
+  const { getBestSellingProducts } = useProducts();
+
+  useEffect(() => {
+    getBestSellingProducts()
+      .then(({ data }) => {
+        data.map((product) => {
+          product['turnover'] = product.buying_price + product.sold_amount;
+          product['increasedBy'] =
+            (product.sold_amount * product.buying_price) /
+            ((product.quantity + product.sold_amount) * product.buying_price);
+        });
+        setBestSellingProducts(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const ITEMS_PER_PAGE = 5;
 
   const rowData = [
-    { id: 1, product: 'Tomato', productid: '12', category: 'Vegetable', turnover: '25000$', increaseby: '3.2%' },
-    { id: 2, product: 'Banana', productid: '15', category: 'Fruit', turnover: '18000$', increaseby: '5.5%' },
-    { id: 3, product: 'Chicken', productid: '18', category: 'Meat', turnover: '30000$', increaseby: '2.1%' },
-    { id: 4, product: 'Chicken', productid: '18', category: 'Meat', turnover: '30000$', increaseby: '2.1%' },
-    { id: 5, product: 'Chicken', productid: '18', category: 'Meat', turnover: '30000$', increaseby: '2.1%' },
-    { id: 5, product: 'Chicken', productid: '18', category: 'Meat', turnover: '30000$', increaseby: '2.1%' },
+    {
+      id: 1,
+      product: 'Tomato',
+      productid: '12',
+      category: 'Vegetable',
+      turnover: '25000$',
+      increaseby: '3.2%',
+    },
+    {
+      id: 2,
+      product: 'Banana',
+      productid: '15',
+      category: 'Fruit',
+      turnover: '18000$',
+      increaseby: '5.5%',
+    },
+    {
+      id: 3,
+      product: 'Chicken',
+      productid: '18',
+      category: 'Meat',
+      turnover: '30000$',
+      increaseby: '2.1%',
+    },
+    {
+      id: 4,
+      product: 'Chicken',
+      productid: '18',
+      category: 'Meat',
+      turnover: '30000$',
+      increaseby: '2.1%',
+    },
+    {
+      id: 5,
+      product: 'Chicken',
+      productid: '18',
+      category: 'Meat',
+      turnover: '30000$',
+      increaseby: '2.1%',
+    },
+    {
+      id: 5,
+      product: 'Chicken',
+      productid: '18',
+      category: 'Meat',
+      turnover: '30000$',
+      increaseby: '2.1%',
+    },
     // Add more data rows as needed
   ];
 
@@ -40,13 +104,23 @@ const BestSellingProduct = () => {
 
   const gridOptions = {
     columnDefs: [
-      { headerName: 'Product', field: 'product', flex: 1 },
-      { headerName: 'Product Id', field: 'productid', flex: 1 },
+      { headerName: 'Product', field: 'name', flex: 1 },
+      { headerName: 'Product Id', field: 'id', flex: 1 },
       { headerName: 'Category', field: 'category', flex: 1 },
-      { headerName: 'Turnover', field: 'turnover', flex: 1 },
-      { headerName: 'Increased By', field: 'increaseby', flex: 1 },
+      {
+        headerName: 'Turnover',
+        field: 'turnover',
+        flex: 1,
+        cellRenderer: (params) => `${params.value}$`,
+      },
+      {
+        headerName: 'Increased By',
+        field: 'increasedBy',
+        flex: 1,
+        cellRenderer: (params) => `${params.value}%`,
+      },
     ],
-    domLayout: 'autoHeight', 
+    domLayout: 'autoHeight',
     rowBuffer: 0,
     maxBlocksInCache: 1,
     maxConcurrentDatasourceRequests: 1,
@@ -55,24 +129,36 @@ const BestSellingProduct = () => {
     rowHeight: 35,
     headerHeight: 40,
     suppressHorizontalScroll: true,
-    cellRenderer: increasedByCellRenderer 
+    cellRenderer: increasedByCellRenderer,
+    onRowClicked: (params) => navigate(`/product-info/${params.data.id}`),
   };
 
   return (
-    <div className=''>
+    <div className="">
       <div className="d-flex justify-content-between">
         <p className="topBspHeading">Best Selling Product</p>
         <div className="d-flex align-items-center">
-          <Button disabled={currentPage === 1} onClick={handlePreviousPage} className="">
+          <Button
+            disabled={currentPage === 1}
+            onClick={handlePreviousPage}
+            className=""
+          >
             Previous
           </Button>
-          <Button disabled={currentPage === totalPages} onClick={handleNextPage} className="">
+          <Button
+            disabled={currentPage === totalPages}
+            onClick={handleNextPage}
+            className=""
+          >
             Next
           </Button>
         </div>
       </div>
-      <div className="ag-theme-alpine pb-2" style={{ width: '100%', margin: '0', overflow:'hidden'}}>
-        <AgGridReact gridOptions={gridOptions} rowData={paginatedData} />
+      <div
+        className="ag-theme-alpine pb-2"
+        style={{ width: '100%', margin: '0', overflow: 'hidden' }}
+      >
+        <AgGridReact gridOptions={gridOptions} rowData={bestSellingProducts} />
       </div>
     </div>
   );

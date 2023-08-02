@@ -1,15 +1,16 @@
-import React from "react";
-import "./innerSettings.css";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
-import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
-import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
+import React from 'react';
+import './innerSettings.css';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
+import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
 import {
   AccountCircleOutlined,
   CreditCardOutlined,
   ManageAccountsOutlined,
   NotificationsOutlined,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const InnerSettings = () => {
   return (
@@ -19,14 +20,21 @@ const InnerSettings = () => {
       </div>
       <div className="bottom">
         <ul className="list-unstyled d-flex flex-column gap-2">
-          <li className="d-flex align-items-center p-3 m-2 rounded cursor-pointer">
-            <AccountCircleOutlined className="icon fs-4" />
-            <span className="fs-6 fw-semibold">Personal Information</span>
-          </li>
-          <li className="active align-items-center p-3 gap-3 m-2 rounded cursor-pointer">
-            <ManageAccountsOutlined className="icon fs-4" />
-            <span className="fs-6 fw-semibold">Account Settings</span>
-          </li>
+          <Link
+            to="/setting/personal-information"
+            className="text-decoration-none"
+          >
+            <li className="d-flex align-items-center p-3 m-2 rounded cursor-pointer">
+              <AccountCircleOutlined className="icon fs-4" />
+              <span className="fs-6 fw-semibold">Personal Information</span>
+            </li>
+          </Link>
+          <Link to="/setting/account" className="text-decoration-none">
+            <li className="active align-items-center p-3 gap-3 m-2 rounded cursor-pointer">
+              <ManageAccountsOutlined className="icon fs-4" />
+              <span className="fs-6 fw-semibold">Account Settings</span>
+            </li>
+          </Link>
           <li className="d-flex align-items-center p-3 gap-3 m-2 rounded cursor-pointer">
             <CreditCardOutlined className="icon fs-4 " />
             <span className="fs-6 fw-semibold ">Billing Information</span>
