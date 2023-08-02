@@ -150,7 +150,10 @@ const ProductDetails = () => {
     rowHeight: 35,
     headerHeight: 40,
     suppressHorizontalScroll: true,
-    onRowClicked: (params) => navigate(`/product-info/${params.data.id}`),
+    onRowClicked: (params) => {
+      console.log(params.data);
+      navigate(`/product-info/${params.data.id}`);
+    },
   };
 
   const handleAddProduct = () => {
