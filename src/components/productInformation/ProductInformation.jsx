@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import './productInformation.css';
-import ProductImage from '../../assets/home-bg.png';
-import useProducts from '../../hooks/useProducts';
-import useUser from '../../hooks/useUser';
+import React, { useEffect, useState } from "react";
+import "./productInformation.css";
+import ProductImage from "../../assets/home-bg.png";
+import useProducts from "../../hooks/useProducts";
+import useUser from "../../hooks/useUser";
 
 const ProductInformation = ({ productId }) => {
-  const [productName, setProductName] = useState('');
-  const [productCategory, setProductCategory] = useState('');
-  const [productExpiry, setProductExpiry] = useState('');
-  const [productQuantity, setProductQuantity] = useState('');
-  const [productThresholdValue, setProuductThresholdValue] = useState('');
+  const [productName, setProductName] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const [productExpiry, setProductExpiry] = useState("");
+  const [productQuantity, setProductQuantity] = useState("");
+  const [productThresholdValue, setProuductThresholdValue] = useState("");
 
-  const [supplierName, setSupplierName] = useState('');
-  const [supplierContact, setSupplierContact] = useState('');
+  const [supplierName, setSupplierName] = useState("");
+  const [supplierContact, setSupplierContact] = useState("");
 
   const { getProductDetail } = useProducts();
   const { getUserDetailById } = useUser();
@@ -123,9 +123,9 @@ const ProductInformation = ({ productId }) => {
         </div>
 
         <div className="basicDetails d-flex flex-column">
-          <div className="productImage w-50 d-flex">
+          {/* <div className="productImage w-50 d-flex">
             <img src={ProductImage} alt="" className="p-image" />
-          </div>
+          </div> */}
 
           <div className="b-details d-flex flex-column">
             <div className="opening-stock d-flex justify-content-between">

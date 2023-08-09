@@ -136,7 +136,7 @@ const BestSellingProduct = () => {
   return (
     <div className="">
       <div className="d-flex justify-content-between">
-        <p className="topBspHeading">Best Selling Product</p>
+        <p className="topBspHeading">Most Stored Product</p>
         <div className="d-flex align-items-center">
           <Button
             disabled={currentPage === 1}

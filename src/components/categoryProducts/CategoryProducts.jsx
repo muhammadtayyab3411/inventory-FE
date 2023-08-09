@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -10,26 +10,11 @@ import {
   TextField,
   DialogActions,
 } from "@material-ui/core";
-import "./productDetails.css";
-import ViewDetailsButton from "./ViewDetailsButton";
-import useProducts from "../../hooks/useProducts";
+import "./categoryProducts.css";
 import { useNavigate } from "react-router-dom";
 
-const ProductDetails = () => {
-  const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(0);
-  const { saveNewProduct, getAllProducts } = useProducts();
-
+const CategoryProducts = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getAllProducts()
-      .then(({ data }) => {
-        setProducts(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   const ITEMS_PER_PAGE = 10;
 
   const initialData = [
@@ -41,7 +26,6 @@ const ProductDetails = () => {
       thresholdvalue: "12 Packets",
       expiryDate: "2023-12-31",
       availability: "In Stock",
-      details: "View Details",
     },
     {
       id: 2,
@@ -51,7 +35,6 @@ const ProductDetails = () => {
       thresholdvalue: "10 Packets",
       expiryDate: "2023-11-30",
       availability: "Out of Stock",
-      details: "View Details",
     },
     {
       id: 3,
@@ -61,7 +44,6 @@ const ProductDetails = () => {
       thresholdvalue: "8 Packets",
       expiryDate: "2023-11-30",
       availability: "Low Stock",
-      details: "View Details",
     },
   ];
 
@@ -86,20 +68,20 @@ const ProductDetails = () => {
     columnDefs: [
       {
         headerName: "Product",
-        field: "name",
+        field: "product",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: "Buying Price ($)",
-        field: "buying_price",
+        headerName: "Buying Price",
+        field: "buyingPrice",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: "Quantity (Packets)",
+        headerName: "Quantity",
         field: "quantity",
         sortable: true,
         filter: true,
@@ -107,37 +89,28 @@ const ProductDetails = () => {
       },
       {
         headerName: "Threshold Value",
-        field: "threshold_value",
+        field: "thresholdvalue",
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
         headerName: "Expiry Date",
-        field: "expiry_date",
+        field: "expiryDate",
         sortable: true,
         filter: true,
         flex: 1,
-        cellRenderer: (params) => {
-          const date = new Date(params.value);
-          return date.toLocaleDateString();
-        },
       },
       {
         headerName: "Availability",
-        field: "quantity",
+        field: "availability",
         sortable: true,
         filter: true,
         flex: 1,
         cellClassRules: {
-          inStock: (params) => params.value > 5,
-          outOfStock: (params) => params.value < 3,
-          lowStock: (params) => params.value < 5 && params.value > 3,
-        },
-        cellRenderer: (params) => {
-          if (params.value > 5) return "In Stock";
-          else if (params.value < 3) return "Out of Stock";
-          else if (params.value < 5 && params.value > 3) return "Low Stock";
+          inStock: (params) => params.value === "In Stock",
+          outOfStock: (params) => params.value === "Out of Stock",
+          lowStock: (params) => params.value === "Low Stock",
         },
       },
     ],
@@ -151,7 +124,6 @@ const ProductDetails = () => {
     headerHeight: 40,
     suppressHorizontalScroll: true,
     onRowClicked: (params) => {
-      console.log(params.data);
       navigate(`/product-info/${params.data.id}`);
     },
   };
@@ -167,7 +139,6 @@ const ProductDetails = () => {
   const handleSaveProduct = () => {
     const newProductWithDetails = {
       ...newProduct,
-      details: "View Details",
     };
 
     setRowData([...rowData, newProductWithDetails]);
@@ -184,24 +155,7 @@ const ProductDetails = () => {
       unit: "",
       thresholdvalue: "",
     });
-
-    saveNewProduct(
-      newProduct.product,
-      newProduct.category,
-      newProduct.buyingPrice,
-      newProduct.quantity,
-      newProduct.unit,
-      newProduct.expiryDate,
-      newProduct.thresholdvalue
-    )
-      .then((res) => {
-        alert("Product created successfully");
-        setIsDialogOpen(false);
-      })
-      .catch((err) => {
-        alert("Error occured when creating the product");
-        console.log(err);
-      });
+    setIsDialogOpen(false);
   };
 
   const handleImageChange = (e) => {
@@ -230,7 +184,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div>
+    <div className="category-product p-4">
       <div className="d-flex justify-content-between align-items-center">
         <p className="productDetailsHeading">Products</p>
         <Button
@@ -247,19 +201,23 @@ const ProductDetails = () => {
         className="ag-theme-alpine"
         style={{ width: "100%", margin: "10px 0", overflow: "hidden" }}
       >
-        <AgGridReact gridOptions={gridOptions} rowData={products} />
+        <AgGridReact gridOptions={gridOptions} rowData={paginatedData} />
       </div>
 
-      {/* <Button
+      <Button
         disabled={currentPage === 1}
         onClick={handlePreviousPage}
         className="border px-17 py-9 pg-btn"
       >
         Previous
       </Button>
-      <Button onClick={onPageChange} className="mx-2 border px-17 py-9 pg-btn">
+      <Button
+        disabled={currentPage === totalPages}
+        onClick={handleNextPage}
+        className="mx-2 border px-17 py-9 pg-btn"
+      >
         Next
-      </Button> */}
+      </Button>
 
       <Dialog
         open={isDialogOpen}
@@ -328,11 +286,24 @@ const ProductDetails = () => {
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, buyingPrice: e.target.value })
                 }
-                placeholder="Buying Price in $"
+                placeholder="Enter Buying Price"
               />
             </div>
           </div>
 
+          <div className="addItemField d-flex align-items-center justify-content-between">
+            <p>Availability</p>
+            <div className="inputField">
+              <input
+                label="Availability"
+                value={newProduct.availability}
+                onChange={(e) =>
+                  setNewProduct({ ...newProduct, availability: e.target.value })
+                }
+                placeholder="Enter Product Availability"
+              />
+            </div>
+          </div>
 
           <div className="addItemField d-flex align-items-center justify-content-between">
             <p>Quantity</p>
@@ -343,7 +314,7 @@ const ProductDetails = () => {
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, quantity: e.target.value })
                 }
-                placeholder="No. of Products in Inventory"
+                placeholder="Enter Product Quantity"
               />
             </div>
           </div>
@@ -398,4 +369,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default CategoryProducts;

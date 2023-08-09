@@ -52,6 +52,10 @@
     gap: 30px;
 }
 
+.b-details{
+    padding-top: 50px;
+}
+
 .store-details, .store-info{
     border-bottom: 1px solid #858d9d;
 }

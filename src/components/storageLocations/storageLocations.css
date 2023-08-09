@@ -1,0 +1,127 @@
+.storageLocations{
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.topHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.manageStoreHeading{
+    font-size: 20px;
+    color: #16a34a;
+    font-weight: 500;;
+}
+
+.store{
+    display: flex;
+    /* align-items: center; */
+    margin: 30px 15px;
+    border: 1px solid #FDF1F3;
+    border-radius: 3px;
+    gap: 10px;
+    min-height: 30vh;
+}
+
+.warehouseName{
+    flex: 1;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+    color: #16a34a;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.storeInfo{
+    flex: 2;
+    margin: 15px;
+}
+
+.storeInfo .storeName{
+    font-size: 20px;
+    font-weight: 500;
+    color: #16a34a;
+}
+
+.storeInfo .info{
+    display: flex;
+    margin-top: 15px;
+}
+
+.infoCol1 p, .infoCol2 p{
+    font-size: 16px;
+    color: #5d6679;
+    font-weight: 500;
+}
+
+.infoCol1 p span, .infoCol2 p span{
+    color: #858d9d;
+}
+
+.infoCol1{
+    flex: 1;
+}
+
+.infoCol2{
+    flex: 1.5;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.options button{
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #16a34a;
+    border: 1px solid #cdcbcb;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.dialogContent{
+    gap: 10px;
+}
+
+.addItemField{
+    align-items: center;
+}
+
+.dialogTitle{
+    color: #10A760;
+}
+
+input{
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+}
+
+.inputField{
+    padding: 8px;
+    border: 1px solid #d0d5dd;
+    border-radius: 5px;
+    width: 60%;
+}
+
+.img-upload{
+    margin-bottom: 20px;
+}
+
+.dialogAction{
+    margin-top: 20px;
+}
+
+.addItemField p{
+    padding-top: 12px;
+    font-size: 14px;
+}

@@ -5,6 +5,7 @@ import {
   AssessmentOutlined,
   AssignmentOutlined,
   CalendarMonthOutlined,
+  ClassOutlined,
   DescriptionOutlined,
   GridViewOutlined,
   LogoutOutlined,
@@ -13,6 +14,7 @@ import {
   SettingsOutlined,
   ShoppingCartOutlined,
   TextSnippet,
+  WarehouseOutlined,
 } from "@mui/icons-material";
 
 const Sidebar = () => {
@@ -53,6 +55,18 @@ const Sidebar = () => {
             <li className={isActive("/Report") ? "active" : ""}>
               <AssessmentOutlined className="icon" />
               <span>Report</span>
+            </li>
+          </Link>
+          <Link to="/Product-Categories" style={{ textDecoration: "none" }}>
+            <li className={isActive("/Product-Categories") ? "active" : ""}>
+              <ClassOutlined className="icon" />
+              <span>Categories</span>
+            </li>
+          </Link>
+          <Link to="/Manage-Storage" style={{ textDecoration: "none" }}>
+            <li className={isActive("/Manage-Storage") ? "active" : ""}>
+              <WarehouseOutlined className="icon" />
+              <span>Storage</span>
             </li>
           </Link>
           <Link to="/Suppliers" style={{ textDecoration: "none" }}>
