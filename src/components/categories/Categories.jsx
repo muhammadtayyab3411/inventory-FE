@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import React, { useEffect, useState } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 import {
   Button,
   Dialog,
@@ -9,105 +9,135 @@ import {
   DialogContent,
   TextField,
   DialogActions,
-} from "@material-ui/core";
-import "./categories.css";
-import { useNavigate } from "react-router-dom";
+} from '@material-ui/core';
+import './categories.css';
+import { useNavigate } from 'react-router-dom';
+import useCategories from '../../hooks/useCategories';
 
 const Categories = () => {
   const navigate = useNavigate();
+  const [categoryName, setCategoryName] = useState('');
+  const [categoryProductType, setCategoryProductType] = useState('');
+  const { getAllCategories, createCategory } = useCategories();
+
+  useEffect(() => {
+    getAllCategories()
+      .then(({ data }) => {
+        setRowData(data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const createNewCategory = () => {
+    createCategory(categoryName, categoryProductType)
+      .then((res) => {
+        console.log(res);
+        alert('category created successfully');
+        setIsDialogOpen(false);
+        getAllCategories()
+          .then(({ data }) => setRowData(data))
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const updateField = (setter) => (event) => {
+    setter(() => event.target.value);
+  };
 
   const ITEMS_PER_PAGE = 10;
 
   const initialData = [
     {
       id: 3,
-      categoryName: "Vegetable",
-      productType: "Tomato",
-      totalProducts: "25",
-      dateCreated: "25-7-2023",
-      categoryId: "54",
-      status: "Active",
+      categoryName: 'Vegetable',
+      productType: 'Tomato',
+      totalProducts: '25',
+      dateCreated: '25-7-2023',
+      categoryId: '54',
+      status: 'Active',
     },
     {
       id: 2,
-      categoryName: "Vegetable",
-      productType: "Tomato",
-      totalProducts: "0",
-      dateCreated: "25-7-2023",
-      categoryId: "56",
-      status: "In Active",
+      categoryName: 'Vegetable',
+      productType: 'Tomato',
+      totalProducts: '0',
+      dateCreated: '25-7-2023',
+      categoryId: '56',
+      status: 'In Active',
     },
     {
       id: 2,
-      categoryName: "Vegetable",
-      productType: "Tomato",
-      totalProducts: "10",
-      dateCreated: "25-7-2023",
-      categoryId: "58",
-      status: "Active",
+      categoryName: 'Vegetable',
+      productType: 'Tomato',
+      totalProducts: '10',
+      dateCreated: '25-7-2023',
+      categoryId: '58',
+      status: 'Active',
     },
   ];
 
   const [rowData, setRowData] = useState(initialData);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newCategory, setnewCategory] = useState({
-    categoryName: "",
-    categoryId: "",
-    productType: "",
-    dateCreated: "",
-    totalProducts: "",
+    categoryName: '',
+    categoryId: '',
+    productType: '',
+    dateCreated: '',
+    totalProducts: '',
   });
 
   const gridOptions = {
     columnDefs: [
       {
-        headerName: "Category",
-        field: "categoryName",
+        headerName: 'Category',
+        field: 'name',
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: "Category Id",
-        field: "categoryId",
+        headerName: 'Category Id',
+        field: 'id',
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: "Total Products",
-        field: "totalProducts",
+        headerName: 'Total Products',
+        field: 'total_products',
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: "product Type",
-        field: "productType",
+        headerName: 'product Type',
+        field: 'product_type',
         sortable: true,
         filter: true,
         flex: 1,
       },
       {
-        headerName: "Date Created",
-        field: "dateCreated",
+        headerName: 'Date Created',
+        field: 'date_created',
         sortable: true,
         filter: true,
         flex: 1,
+        cellRenderer: (params) => new Date(params.value).toLocaleDateString(),
       },
       {
-        headerName: "Status",
-        field: "status",
+        headerName: 'Status',
+        field: 'status',
         sortable: true,
         filter: true,
         flex: 1,
         cellClassRules: {
-          active: (params) => params.value === "Active",
-          inactive: (params) => params.value === "In Active",
+          active: (params) => params.value === 'Active',
+          inactive: (params) => params.value === 'In Active',
         },
       },
     ],
-    domLayout: "autoHeight",
+    domLayout: 'autoHeight',
     rowBuffer: 0,
     maxBlocksInCache: 1,
     maxConcurrentDatasourceRequests: 1,
@@ -116,8 +146,8 @@ const Categories = () => {
     rowHeight: 35,
     headerHeight: 40,
     suppressHorizontalScroll: true,
-    onRowClicked: () => {
-      navigate(`/Category-Product`);
+    onRowClicked: (params) => {
+      navigate(`/Category-Product/${params.data.id}`);
     },
   };
 
@@ -132,23 +162,23 @@ const Categories = () => {
   const handleSaveProduct = () => {
     const newCategoryWithDetails = {
       ...newCategory,
-      status: "Active",
+      status: 'Active',
     };
 
     setRowData([...rowData, newCategoryWithDetails]);
     setnewCategory({
-      categoryName: "",
-      categoryId: "",
-      productType: "",
-      dateCreated: "",
-      totalProducts: "",
+      categoryName: '',
+      categoryId: '',
+      productType: '',
+      dateCreated: '',
+      totalProducts: '',
     });
     setIsDialogOpen(false);
   };
 
   const buttonStyle = {
-    backgroundColor: "#10A760",
-    color: "#fff",
+    backgroundColor: '#10A760',
+    color: '#fff',
   };
 
   const totalPages = Math.ceil(rowData.length / ITEMS_PER_PAGE);
@@ -182,7 +212,7 @@ const Categories = () => {
 
       <div
         className="ag-theme-alpine"
-        style={{ width: "100%", margin: "10px 0", overflow: "hidden" }}
+        style={{ width: '100%', margin: '10px 0', overflow: 'hidden' }}
       >
         <AgGridReact gridOptions={gridOptions} rowData={paginatedData} />
       </div>
@@ -214,45 +244,9 @@ const Categories = () => {
             <div className="inputField">
               <input
                 label="Category Name"
-                value={newCategory.categoryName}
-                onChange={(e) =>
-                  setnewCategory({
-                    ...newCategory,
-                    categoryName: e.target.value,
-                  })
-                }
+                value={categoryName}
+                onChange={updateField(setCategoryName)}
                 placeholder="Enter Category Name"
-              />
-            </div>
-          </div>
-
-          <div className="addItemField d-flex align-items-center justify-content-between">
-            <p>Cateogry Id</p>
-            <div className="inputField">
-              <input
-                label="Category Id"
-                value={newCategory.categoryIdid}
-                onChange={(e) =>
-                  setnewCategory({ ...newCategory, categoryId: e.target.value })
-                }
-                placeholder="Enter Category Id"
-              />
-            </div>
-          </div>
-
-          <div className="addItemField d-flex align-items-center justify-content-between">
-            <p>Total Products</p>
-            <div className="inputField">
-              <input
-                label="Product"
-                value={newCategory.totalProducts}
-                onChange={(e) =>
-                  setnewCategory({
-                    ...newCategory,
-                    totalProducts: e.target.value,
-                  })
-                }
-                placeholder="Enter Total Products"
               />
             </div>
           </div>
@@ -262,32 +256,9 @@ const Categories = () => {
             <div className="inputField">
               <input
                 label="Product Type"
-                value={newCategory.productType}
-                onChange={(e) =>
-                  setnewCategory({
-                    ...newCategory,
-                    productType: e.target.value,
-                  })
-                }
+                value={categoryProductType}
+                onChange={updateField(setCategoryProductType)}
                 placeholder="Enter Product Type"
-              />
-            </div>
-          </div>
-
-          <div className="addItemField d-flex align-items-center justify-content-between">
-            <p>Date Created</p>
-            <div className="inputField">
-              <input
-                type="date"
-                label="Date Created"
-                value={newCategory.dateCreated}
-                onChange={(e) =>
-                  setnewCategory({
-                    ...newCategory,
-                    dateCreated: e.target.value,
-                  })
-                }
-                placeholder="Enter Date Created"
               />
             </div>
           </div>
@@ -297,7 +268,7 @@ const Categories = () => {
             Discard
           </Button>
           <Button
-            onClick={handleSaveProduct}
+            onClick={createNewCategory}
             color="primary"
             className="border px-17 py-9"
             style={buttonStyle}
