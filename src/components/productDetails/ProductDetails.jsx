@@ -32,7 +32,6 @@ const ProductDetails = () => {
 
     getAllCategories()
       .then(({ data }) => {
-        console.log('Categories', data);
         setCategories(data);
         if (data.length > 0) setSelectedCategory(data[0].id);
       })

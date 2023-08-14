@@ -33,7 +33,7 @@ function useProducts() {
     });
   };
 
-  const getAllProducts = (offset, end) => {
+  const getAllProducts = () => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.get(`${apiURL}/api/products/getAllProducts`, {
