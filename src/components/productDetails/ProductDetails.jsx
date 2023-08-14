@@ -12,10 +12,14 @@ import {
 import './productDetails.css';
 import useProducts from '../../hooks/useProducts';
 import { useNavigate } from 'react-router-dom';
+import useCategories from '../../hooks/useCategories';
 
 const ProductDetails = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const { saveNewProduct, getAllProducts } = useProducts();
+  const { getAllCategories } = useCategories();
 
   const navigate = useNavigate();
 
@@ -25,9 +29,21 @@ const ProductDetails = () => {
         setProducts(data);
       })
       .catch((err) => console.log(err));
+
+    getAllCategories()
+      .then(({ data }) => {
+        console.log('Categories', data);
+        setCategories(data);
+        if (data.length > 0) setSelectedCategory(data[0].id);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const ITEMS_PER_PAGE = 10;
+
+  const updateField = (setter) => (event) => {
+    setter(() => event.target.value);
+  };
 
   const initialData = [
     {
@@ -184,7 +200,7 @@ const ProductDetails = () => {
 
     saveNewProduct(
       newProduct.product,
-      newProduct.category,
+      selectedCategory,
       newProduct.buyingPrice,
       newProduct.quantity,
       newProduct.unit,
@@ -209,21 +225,6 @@ const ProductDetails = () => {
   const buttonStyle = {
     backgroundColor: '#10A760',
     color: '#fff',
-  };
-
-  const totalPages = Math.ceil(rowData.length / ITEMS_PER_PAGE);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, rowData.length);
-  const paginatedData = rowData.slice(startIndex, endIndex);
-
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  };
-
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
   return (
@@ -294,14 +295,25 @@ const ProductDetails = () => {
           <div className="addItemField d-flex align-items-center justify-content-between">
             <p>Category</p>
             <div className="inputField">
-              <input
+              {/* <input
                 label="Product"
                 value={newProduct.category}
                 onChange={(e) =>
                   setNewProduct({ ...newProduct, category: e.target.value })
                 }
                 placeholder="Enter Product Category"
-              />
+              /> */}
+
+              <select
+                name="category"
+                id="category"
+                value={selectedCategory}
+                onChange={updateField(setSelectedCategory)}
+              >
+                {categories.map((category) => (
+                  <option value={category.id}>{category.name}</option>
+                ))}
+              </select>
             </div>
           </div>
 
