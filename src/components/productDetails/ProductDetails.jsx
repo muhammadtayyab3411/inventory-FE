@@ -295,16 +295,9 @@ const ProductDetails = () => {
           <div className="addItemField d-flex align-items-center justify-content-between">
             <p>Category</p>
             <div className="inputField">
-              {/* <input
-                label="Product"
-                value={newProduct.category}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, category: e.target.value })
-                }
-                placeholder="Enter Product Category"
-              /> */}
-
               <select
+                style={{ width: '100%', border: 'none', outline: 'none' }}
+                className="inputField"
                 name="category"
                 id="category"
                 value={selectedCategory}
