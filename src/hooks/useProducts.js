@@ -1,14 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
 function useProducts() {
-  const token = localStorage.getItem("jwtoken");
+  const token = localStorage.getItem('jwtoken');
+  const apiURL = 'https://lime-crowded-foal.cyclic.app';
+
   const getProductsWithPagination = (offset, end) => {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          "http://localhost:8000/api/products/getProductsWithPagination",
+          `${apiURL}/api/products/getProductsWithPagination`,
           { start: offset, end },
-          { headers: { "x-auth-token": token } }
+          { headers: { 'x-auth-token': token } }
         );
         resolve(res);
       } catch (err) {
@@ -21,8 +23,8 @@ function useProducts() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/products/bestSellingProducts",
-          { headers: { "x-auth-token": token } }
+          `${apiURL}/api/products/bestSellingProducts`,
+          { headers: { 'x-auth-token': token } }
         );
         resolve(res);
       } catch (err) {
@@ -34,10 +36,9 @@ function useProducts() {
   const getAllProducts = (offset, end) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.get(
-          "http://localhost:8000/api/products/getAllProducts",
-          { headers: { "x-auth-token": token } }
-        );
+        const res = await axios.get(`${apiURL}/api/products/getAllProducts`, {
+          headers: { 'x-auth-token': token },
+        });
         resolve(res);
       } catch (err) {
         reject(err);
@@ -48,10 +49,9 @@ function useProducts() {
   const getLowStockProducts = (offset, end) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.get(
-          "http://localhost:8000/api/products/lowStockProducts",
-          { headers: { "x-auth-token": token } }
-        );
+        const res = await axios.get(`${apiURL}/api/products/lowStockProducts`, {
+          headers: { 'x-auth-token': token },
+        });
         resolve(res);
       } catch (err) {
         reject(err);
@@ -63,8 +63,8 @@ function useProducts() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/products/getAllProductsReport",
-          { headers: { "x-auth-token": token } }
+          `${apiURL}/api/products/getAllProductsReport`,
+          { headers: { 'x-auth-token': token } }
         );
         resolve(res);
       } catch (err) {
@@ -85,7 +85,7 @@ function useProducts() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          "http://localhost:8000/api/products/newProduct",
+          `${apiURL}/api/products/newProduct`,
           {
             name,
             category,
@@ -95,7 +95,7 @@ function useProducts() {
             expiry_date,
             threshold_value,
           },
-          { headers: { "x-auth-token": token } }
+          { headers: { 'x-auth-token': token } }
         );
         resolve(res);
       } catch (err) {
@@ -108,9 +108,9 @@ function useProducts() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          "http://localhost:8000/api/products/getProduct",
+          `${apiURL}/api/products/getProduct`,
           { productId },
-          { headers: { "x-auth-token": token } }
+          { headers: { 'x-auth-token': token } }
         );
         resolve(res);
       } catch (err) {

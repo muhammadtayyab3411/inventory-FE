@@ -2,11 +2,12 @@ import axios from 'axios';
 
 function useCategories() {
   const token = localStorage.getItem('jwtoken');
+  const apiURL = 'https://lime-crowded-foal.cyclic.app';
 
   const getAllCategories = () => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.get('http://localhost:8000/api/categories/', {
+        const res = await axios.get(`${apiURL}/api/categories/`, {
           headers: { 'x-auth-token': token },
         });
         resolve(res);
@@ -20,7 +21,7 @@ function useCategories() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          'http://localhost:8000/api/categories',
+          `${apiURL}/api/categories`,
           {
             name,
             product_type,
@@ -47,7 +48,7 @@ function useCategories() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          'http://localhost:8000/api/categories/createProduct',
+          `${apiURL}/api/categories/createProduct`,
           {
             name,
             category,
@@ -71,7 +72,7 @@ function useCategories() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          'http://localhost:8000/api/categories/getProductsWithCategory',
+          `${apiURL}/api/categories/getProductsWithCategory`,
           {
             category,
           },

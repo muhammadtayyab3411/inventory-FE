@@ -6,9 +6,11 @@ function PrivateRoute() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const apiURL = 'https://lime-crowded-foal.cyclic.app';
+
   useEffect(() => {
     axios
-      .get('http://localhost:8000/api/isUserLoggedIn', {
+      .get(`${apiURL}/api/isUserLoggedIn`, {
         headers: { 'x-auth-token': localStorage.getItem('jwtoken') },
       })
       .then((res) => {

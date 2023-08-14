@@ -2,11 +2,12 @@ import axios from 'axios';
 
 function useUser() {
   const token = localStorage.getItem('jwtoken');
+  const apiURL = 'https://lime-crowded-foal.cyclic.app';
 
   const getUserDetails = () => {
     return new Promise((resolve, reject) => {
       axios
-        .get('http://localhost:8000/api/userDetail', {
+        .get(`${apiURL}/api/userDetail`, {
           headers: { 'x-auth-token': token },
         })
         .then((res) => resolve(res))
@@ -18,7 +19,7 @@ function useUser() {
     return new Promise((resolve, reject) => {
       axios
         .post(
-          'http://localhost:8000/api/userDetailById',
+          `${apiURL}/api/userDetailById`,
           { user_id },
           { headers: { 'x-auth-token': token } }
         )
@@ -38,7 +39,7 @@ function useUser() {
     return new Promise((resolve, reject) => {
       axios
         .post(
-          'http://localhost:8000/api/userDetail',
+          `${apiURL}/api/userDetail`,
           { firstName, lastName, phone, country, language, profilePicture },
           { headers: { 'x-auth-token': token } }
         )

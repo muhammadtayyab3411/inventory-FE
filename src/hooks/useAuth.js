@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 function useAuth() {
+  const apiURL = 'https://lime-crowded-foal.cyclic.app';
+
   const signup = (name, email, password) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post('http://localhost:8000/api/register', {
+        const res = await axios.post(`${apiURL}/api/register`, {
           name,
           email,
           password,
@@ -20,7 +22,7 @@ function useAuth() {
   const login = (email, password) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post('http://localhost:8000/api/login', {
+        const res = await axios.post(`${apiURL}/api/login`, {
           email,
           password,
         });
@@ -35,12 +37,9 @@ function useAuth() {
   const forgotPassword = (email) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post(
-          'http://localhost:8000/api/forget-password',
-          {
-            email,
-          }
-        );
+        const res = await axios.post(`${apiURL}/api/forget-password`, {
+          email,
+        });
         resolve(res);
       } catch (err) {
         console.log(err);
@@ -52,7 +51,7 @@ function useAuth() {
   const getQRCode = async (userId) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post('http://localhost:8000/api/getQrCode', {
+        const res = await axios.post(`${apiURL}/api/getQrCode`, {
           userId,
         });
         resolve(res);
@@ -66,7 +65,7 @@ function useAuth() {
   const verifyOTP = async (email, otp) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post('http://localhost:8000/api/enable-2fa', {
+        const res = await axios.post(`${apiURL}/api/enable-2fa`, {
           email,
           otp,
         });
@@ -82,7 +81,7 @@ function useAuth() {
     return new Promise(async (resolve, reject) => {
       try {
         const res = await axios.post(
-          'http://localhost:8000/api/validateResetPasswordToken',
+          `${apiURL}/api/validateResetPasswordToken`,
           {
             token,
           }
@@ -98,13 +97,10 @@ function useAuth() {
   const resetPassword = (token, password) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const res = await axios.post(
-          'http://localhost:8000/api/resetPassword',
-          {
-            token,
-            password,
-          }
-        );
+        const res = await axios.post(`${apiURL}/api/resetPassword`, {
+          token,
+          password,
+        });
         resolve(res);
       } catch (err) {
         console.log(err);
